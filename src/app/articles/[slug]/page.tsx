@@ -1,17 +1,54 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { getArticleBySlug } from "@/lib/articles";
+import { getPublicSiteUrl } from "@/lib/site-url";
 import { getCurrentUser, isSubscriptionActive } from "@/lib/auth";
 import { splitParagraphs } from "@/components/ArticleRichText";
 import { MarkdownBody } from "@/components/MarkdownBody";
 
 type Props = { params: Promise<{ slug: string }> };
 
-export async function generateMetadata({ params }: Props) {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const article = await getArticleBySlug(slug);
   if (!article) return { title: "未找到" };
-  return { title: article.title, description: article.excerpt };
+
+  const base = getPublicSiteUrl();
+  const articlePath = `/articles/${slug}`;
+  const articleUrl = `${base}${articlePath}`;
+  const imageUrl = `${base}${articlePath}/opengraph-image`;
+
+  return {
+    title: article.title,
+    description: article.excerpt,
+    metadataBase: new URL(base),
+    alternates: { canonical: articleUrl },
+    openGraph: {
+      type: "article",
+      locale: "zh_CN",
+      siteName: "LT Magazine",
+      title: article.title,
+      description: article.excerpt,
+      url: articleUrl,
+      publishedTime: article.publishedAt.toISOString(),
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: article.title,
+          type: "image/png",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: article.title,
+      description: article.excerpt,
+      images: [imageUrl],
+    },
+  };
 }
 
 export default async function ArticlePage({ params }: Props) {
