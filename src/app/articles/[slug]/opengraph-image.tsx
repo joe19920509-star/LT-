@@ -1,7 +1,7 @@
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
-import { getArticleBySlug } from "@/lib/articles";
+import { getArticleInfoForOg } from "@/lib/article-og";
 
 export const alt = "LT Magazine";
 export const size = { width: 1200, height: 630 };
@@ -45,7 +45,7 @@ async function loadChineseFont(): Promise<ArrayBuffer | null> {
 
 type Props = { params: Promise<{ slug: string }> };
 
-function ogImageResponse(
+function buildOgImageResponse(
   title: string,
   category: string,
   fonts: readonly [{ name: string; data: ArrayBuffer; weight: 700; style: "normal" }] | undefined,
@@ -152,15 +152,16 @@ function ogImageResponse(
   );
 }
 
+/** ImageResponse 在流被读取时才真正渲染，必须在路由里 await 才能把 Satori 错误收进 try/catch */
+async function imageResponseToPng(res: Response): Promise<Response> {
+  const buf = await res.arrayBuffer();
+  return new Response(buf, { status: 200, headers: res.headers });
+}
+
 export default async function Image({ params }: Props) {
   const { slug } = await params;
 
-  let article: Awaited<ReturnType<typeof getArticleBySlug>> = null;
-  try {
-    article = await getArticleBySlug(slug);
-  } catch {
-    article = null;
-  }
+  const article = await getArticleInfoForOg(slug);
 
   const fontData = await loadChineseFont();
   const fonts = fontData
@@ -173,9 +174,12 @@ export default async function Image({ params }: Props) {
   const category = article?.category ?? "";
 
   try {
-    return ogImageResponse(title, category, fonts);
+    return await imageResponseToPng(buildOgImageResponse(title, category, fonts));
   } catch {
-    /** 缺 CJK 字体时 Satori 可能对中文抛错，降级为纯英文占位，避免分享链 500 */
-    return ogImageResponse("LT Magazine", "", undefined);
+    try {
+      return await imageResponseToPng(buildOgImageResponse("LT Magazine", "", undefined));
+    } catch {
+      return new Response(null, { status: 503 });
+    }
   }
 }
