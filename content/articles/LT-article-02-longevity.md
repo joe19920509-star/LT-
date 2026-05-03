@@ -1,3 +1,12 @@
+---
+title: "长生不老是一门多大的生意：从酸奶到基因编辑的四层世界"
+slug: lt-article-02-longevity
+category: "LongTerm & ShortTerm"
+dek: "从功能性食品到基因编辑，抗衰老产业链的分层与资本逻辑。"
+excerpt: "抗衰老不是单一行业，而是从酸奶到贝索斯押注实验室的整条光谱；本文沿光谱梳理科学与商业之间的距离。"
+publishedAt: "2026-04-01"
+---
+
 # 长生不老是一门多大的生意：从酸奶到基因编辑的四层世界
 
 **文 / LT Magazine · Column: Long Term & Short Term**

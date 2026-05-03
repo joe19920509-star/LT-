@@ -1,3 +1,12 @@
+---
+title: "专利到期，遍地鲁肽：GLP-1仿制药混战刚刚开始"
+slug: lt-article-01-glp1
+category: "Lab to Market"
+dek: "GLP-1 专利到期后的国产仿制药与创新药混战。"
+excerpt: "2026 年司美格鲁肽中国核心专利到期，国产生物类似药与创新管线加速入场，拆解专利墙倒塌后的产业链与资本市场。"
+publishedAt: "2026-03-20"
+---
+
 # 专利到期，遍地鲁肽：GLP-1仿制药混战刚刚开始
 
 **文 / LT Magazine · Column: Lab to Market**

@@ -1,3 +1,12 @@
+---
+title: "当技艺成为非遗：AI时代的断代与新生"
+slug: lt-article-08-ai-era
+category: "Fast & Slow"
+dek: "刘润「非遗」隐喻下，AI 时代技能断代与传承的再思考。"
+excerpt: "当 AI 把入门期压缩到近乎消失，手艺与专业技能的「博物馆化」是否必然，断代之后会发生什么？"
+publishedAt: "2026-05-01"
+---
+
 # 当技艺成为非遗：AI时代的断代与新生
 
 **文 / LT Magazine · Column: Fast & Slow**

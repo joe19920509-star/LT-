@@ -1,3 +1,12 @@
+---
+title: "面料里的「永久化学品」：一条瑜伽裤背后的化学课文"
+slug: lt-article-03-pfas
+category: "LongTerm & ShortTerm"
+dek: "PFAS、瑜伽裤与消费品安全调查背后的化学叙事。"
+excerpt: "2026 年 CPSC 对运动品牌瑜伽裤启动调查，舆论多写品牌营销，却少问面料里的永久化学品 PFAS 究竟是什么。"
+publishedAt: "2026-04-15"
+---
+
 文 / LT Magazine · Column: Long Term & Short Term
 
 面料里的「永久化学品」：一条瑜伽裤背后的化学课文
