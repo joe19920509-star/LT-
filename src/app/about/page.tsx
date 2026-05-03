@@ -18,9 +18,12 @@ export default function AboutPage() {
           为主的财经与观点内容产品，聚焦市场结构、跨资产线索与长期叙事。注册并订阅后可阅读全文，并基于您的画像生成「今日看版」。
         </p>
         <p>
-          栏目 <strong className="text-ink">Lab to Market</strong> 关注研究与产业落地；{" "}
-          <strong className="text-ink">LongTerm & ShortTerm</strong> 对照长短期定价；{" "}
-          <strong className="text-ink">Fast & Slow</strong> 观察流动性与风格在快慢之间的切换。
+          <strong className="text-ink">Lab to Market</strong>
+          ：从实验室到华尔街，一件事是怎么变成一门生意的。{" "}
+          <strong className="text-ink">LongTerm & ShortTerm</strong>
+          ：用长期结构看短期机会，用短期心跳测长期方向。{" "}
+          <strong className="text-ink">Fast & Slow</strong>
+          ：热点发生的时候，我们先冲进去，再退出来想清楚。
         </p>
         <p>
           发稿方式：<strong className="text-ink">Git Markdown</strong>（仓库{" "}
