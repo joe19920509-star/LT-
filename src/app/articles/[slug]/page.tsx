@@ -6,6 +6,7 @@ import { getPublicSiteUrl } from "@/lib/site-url";
 import { getCurrentUser, isSubscriptionActive } from "@/lib/auth";
 import { splitParagraphs } from "@/components/ArticleRichText";
 import { MarkdownBody } from "@/components/MarkdownBody";
+import { ArticleSharePanel } from "@/components/ArticleSharePanel";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -65,6 +66,11 @@ export default async function ArticlePage({ params }: Props) {
   const previewMd = preview.join("\n\n");
   const lockedMd = locked.join("\n\n");
 
+  const base = getPublicSiteUrl();
+  const articlePath = `/articles/${slug}`;
+  const articleUrl = `${base}${articlePath}`;
+  const shareImageUrl = `${base}${articlePath}/opengraph-image`;
+
   return (
     <article className="mx-auto max-w-3xl px-4 py-10 md:px-6">
       <p className="text-xs font-semibold uppercase tracking-widest text-accent">{article.category}</p>
@@ -77,6 +83,13 @@ export default async function ArticlePage({ params }: Props) {
           day: "numeric",
         })}
       </p>
+
+      <ArticleSharePanel
+        url={articleUrl}
+        title={article.title}
+        description={article.excerpt}
+        imageUrl={shareImageUrl}
+      />
 
       {fullAccess ? (
         <div className="article-md mt-10">
