@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Merriweather, Source_Sans_3 } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -48,6 +49,7 @@ export default function RootLayout({
         <SiteHeader />
         <main className="min-h-[60vh]">{children}</main>
         <SiteFooter />
+        <Analytics />
       </body>
     </html>
   );
