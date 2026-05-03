@@ -1,13 +1,10 @@
 import Link from "next/link";
-import { prisma } from "@/lib/prisma";
+import { getAllArticles } from "@/lib/articles";
 
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
-  const articles = await prisma.article.findMany({
-    orderBy: { publishedAt: "desc" },
-    take: 8,
-  });
+  const articles = (await getAllArticles()).slice(0, 8);
 
   const lead = articles[0];
   const rest = articles.slice(1);
@@ -60,7 +57,7 @@ export default async function HomePage() {
         </div>
         <div className="grid gap-8 md:grid-cols-2">
           {rest.map((a) => (
-            <article key={a.id} className="border-b border-rule pb-8 md:border-0 md:pb-0">
+            <article key={a.slug} className="border-b border-rule pb-8 md:border-0 md:pb-0">
               <p className="text-xs font-semibold uppercase tracking-wide text-accent">{a.category}</p>
               <Link href={`/articles/${a.slug}`}>
                 <h3 className="mt-2 font-display text-2xl font-bold leading-snug hover:underline">

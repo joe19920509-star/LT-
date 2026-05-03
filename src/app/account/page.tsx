@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { prisma } from "@/lib/prisma";
+import { getAllArticles } from "@/lib/articles";
 import { getCurrentUser, isSubscriptionActive } from "@/lib/auth";
 import { buildPersonalEdition } from "@/lib/edition";
 
@@ -21,7 +21,7 @@ export default async function AccountPage() {
   if (!user) redirect("/login?next=/account");
 
   const active = isSubscriptionActive(user);
-  const articles = await prisma.article.findMany({ orderBy: { publishedAt: "desc" }, take: 12 });
+  const articles = (await getAllArticles()).slice(0, 12);
 
   const edition = buildPersonalEdition(
     {
@@ -114,7 +114,7 @@ export default async function AccountPage() {
 
         <ol className="grid list-decimal gap-6 pl-5 md:grid-cols-2">
           {edition.ordered.map((a) => (
-            <li key={a.id} className="marker:font-display marker:text-accent">
+            <li key={a.slug} className="marker:font-display marker:text-accent">
               <article>
                 <p className="text-xs font-semibold uppercase text-muted">{a.category}</p>
                 <Link href={`/articles/${a.slug}`} className="group">

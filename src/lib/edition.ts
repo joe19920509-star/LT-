@@ -1,4 +1,4 @@
-import type { Article } from "@prisma/client";
+import type { ListedArticle } from "@/lib/articles";
 
 type UserEditionInput = {
   region: string;
@@ -10,11 +10,11 @@ type UserEditionInput = {
 /** 根据用户画像生成「今日看版」导语与排序权重（规则引擎，可后续接推荐服务） */
 export function buildPersonalEdition(
   user: UserEditionInput,
-  articles: Article[],
+  articles: ListedArticle[],
 ): {
   headline: string;
   subline: string;
-  ordered: Article[];
+  ordered: ListedArticle[];
   tags: string[];
 } {
   const tags: string[] = [];

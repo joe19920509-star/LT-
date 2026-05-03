@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { prisma } from "@/lib/prisma";
+import { getAllArticles } from "@/lib/articles";
 import { getSectionBySlug } from "@/lib/sections";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -20,10 +20,7 @@ export default async function SectionPage({ params }: Props) {
   const section = getSectionBySlug(slug);
   if (!section) notFound();
 
-  const articles = await prisma.article.findMany({
-    where: { category: section.label },
-    orderBy: { publishedAt: "desc" },
-  });
+  const articles = (await getAllArticles()).filter((a) => a.category === section.label);
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10 md:px-6">
@@ -33,11 +30,14 @@ export default async function SectionPage({ params }: Props) {
 
       <div className="mt-12 border-t-2 border-ink pt-8">
         {articles.length === 0 ? (
-          <p className="text-muted">该栏目下暂无文章，请在后台或 seed 中为 `category` 填入「{section.label}」。</p>
+          <p className="text-muted">
+            该栏目下暂无文章。请在 <code className="rounded bg-paper px-1">content/articles/*.md</code> 的 frontmatter
+            里将 <code className="rounded bg-paper px-1">category</code> 设为「{section.label}」，或使用后台新建数据库稿。
+          </p>
         ) : (
           <ul className="grid gap-10 md:grid-cols-2">
             {articles.map((a) => (
-              <li key={a.id}>
+              <li key={a.slug}>
                 <article>
                   <p className="text-xs font-semibold uppercase tracking-wide text-accent">{a.category}</p>
                   <Link href={`/articles/${a.slug}`}>

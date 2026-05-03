@@ -26,3 +26,19 @@ body {
 .article-body strong {
   @apply font-semibold text-ink;
 }
+
+.article-md p {
+  @apply mb-4 text-[1.05rem] leading-relaxed text-ink/90;
+}
+
+.article-md strong {
+  @apply font-semibold text-ink;
+}
+
+.article-md ul {
+  @apply mb-4 list-disc pl-6;
+}
+
+.article-md h2 {
+  @apply mb-3 mt-8 font-display text-xl font-bold text-ink;
+}
