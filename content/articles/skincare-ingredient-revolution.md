@@ -4,7 +4,7 @@ slug: "skincare-ingredient-revolution"
 category: "Lab to Market"
 dek: "外泌体、PDRN、丝素蛋白、siRNA——谁在改写皮肤生意的底层逻辑？从成分堆砌到机理设计，护肤品定价权正在被重新定义。"
 excerpt: "从成分堆砌到机理设计，护肤品正在经历定价权的底层迁移。外泌体、PDRN、丝素蛋白、siRNA四个成分，四条不同的成熟路径，但指向同一个问题：你的护肤品，到底在为什么付钱？"
-publishedAt: "2026-05-10"
+publishedAt: "2026-05-03"
 ---
 
 **文 / Jon**

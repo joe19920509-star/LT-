@@ -4,7 +4,7 @@ slug: "lululemon-pfas-chemical"
 category: "LongTerm & ShortTerm"
 dek: "PFAS「永久毒素」进入瑜伽裤，消费者为致癌风险买单——这不是品牌危机，是供应链定价逻辑的必然结果。"
 excerpt: "lululemon瑜伽裤被检出PFAS永久化学品超标。本文从化学机理、产业逻辑、投资机会三个维度，为读者还原一条裤子的完整价格链条。"
-publishedAt: "2026-05-10"
+publishedAt: "2026-05-03"
 ---
 
 **文 / Jon**

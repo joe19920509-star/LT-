@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getAllArticles } from "@/lib/articles";
+import { pickHomeLeadAndRest } from "@/lib/home-banner";
 import { getMarketStrip } from "@/lib/market-quotes";
 
 export const dynamic = "force-dynamic";
@@ -8,8 +9,7 @@ export default async function HomePage() {
   const articles = (await getAllArticles()).slice(0, 8);
   const strip = await getMarketStrip();
 
-  const lead = articles[0];
-  const rest = articles.slice(1);
+  const { lead, rest } = pickHomeLeadAndRest(articles);
 
   return (
     <div className="mx-auto max-w-6xl px-4 pb-16 pt-8 md:px-6">
