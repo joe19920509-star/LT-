@@ -33,7 +33,7 @@ export async function SiteHeader() {
               ) : (
                 <Link
                   href="/subscribe"
-                  className="rounded border border-accent px-3 py-1.5 text-xs font-medium text-accent hover:bg-paper"
+                  className="rounded border border-accent px-3 py-1.5 text-xs font-medium text-accent hover:bg-zinc-50"
                 >
                   开通订阅
                 </Link>

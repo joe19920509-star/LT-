@@ -31,8 +31,8 @@ export default async function SectionPage({ params }: Props) {
       <div className="mt-12 border-t-2 border-ink pt-8">
         {articles.length === 0 ? (
           <p className="text-muted">
-            该栏目下暂无文章。请在 <code className="rounded bg-paper px-1">content/articles/*.md</code> 的 frontmatter
-            里将 <code className="rounded bg-paper px-1">category</code> 设为「{section.label}」，或使用后台新建数据库稿。
+            该栏目下暂无文章。请在 <code className="rounded bg-zinc-100 px-1">content/articles/*.md</code> 的 frontmatter
+            里将 <code className="rounded bg-zinc-100 px-1">category</code> 设为「{section.label}」，或使用后台新建数据库稿。
           </p>
         ) : (
           <ul className="grid gap-10 md:grid-cols-2">

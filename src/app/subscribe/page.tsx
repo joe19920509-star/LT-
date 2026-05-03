@@ -47,7 +47,7 @@ export default async function SubscribePage() {
           <SubscribeButton />
           <p className="text-xs text-muted">
             正式部署至 ltmagazine.cn 时，请替换为微信/支付宝/Stripe 等支付回调，在回调中写入{" "}
-            <code className="rounded bg-paper px-1">isSubscriber</code> 与到期时间。
+            <code className="rounded bg-zinc-100 px-1">isSubscriber</code> 与到期时间。
           </p>
         </div>
       )}

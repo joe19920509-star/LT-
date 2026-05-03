@@ -4,7 +4,7 @@ import { SECTIONS } from "@/lib/sections";
 export function SectionNav() {
   return (
     <nav
-      className="border-t border-rule bg-paper/90"
+      className="border-t border-rule bg-white"
       aria-label="栏目"
     >
       <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-5 gap-y-2 px-4 py-2.5 text-sm md:gap-x-6 md:px-6">

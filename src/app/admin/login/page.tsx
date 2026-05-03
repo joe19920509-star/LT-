@@ -25,7 +25,7 @@ export default async function AdminLoginPage({
       <h1 className="font-display text-2xl font-bold">内容管理登录</h1>
       <p className="mt-2 text-sm text-muted">
         数据库发稿入口。Markdown 仓库稿请在 Git 中编辑{" "}
-        <code className="rounded bg-paper px-1 text-xs">content/articles/*.md</code> 后推送部署。
+        <code className="rounded bg-zinc-100 px-1 text-xs">content/articles/*.md</code> 后推送部署。
       </p>
       {err && (
         <p className="mt-4 rounded border border-red-200 bg-red-50 p-3 text-sm text-red-900" role="alert">

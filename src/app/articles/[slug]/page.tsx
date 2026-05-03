@@ -58,7 +58,7 @@ export default async function ArticlePage({ params }: Props) {
               >
                 <MarkdownBody content={lockedMd} />
               </div>
-              <div className="absolute inset-0 flex flex-col items-center justify-end bg-gradient-to-t from-paper via-paper/95 to-transparent pb-6 pt-24">
+              <div className="absolute inset-0 flex flex-col items-center justify-end bg-gradient-to-t from-white via-white/95 to-transparent pb-6 pt-24">
                 <p className="max-w-md text-center text-sm font-medium text-ink">
                   本文为订阅内容。注册并开通订阅后阅读全文。
                 </p>
@@ -71,7 +71,7 @@ export default async function ArticlePage({ params }: Props) {
                   </Link>
                   <Link
                     href="/login"
-                    className="rounded border border-rule bg-white px-4 py-2 text-sm font-semibold hover:bg-paper"
+                    className="rounded border border-rule bg-white px-4 py-2 text-sm font-semibold hover:bg-zinc-50"
                   >
                     已有账号登录
                   </Link>

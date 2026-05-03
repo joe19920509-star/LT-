@@ -20,7 +20,7 @@ export default async function AdminArticlesPage() {
                 <span
                   className={
                     a.source === "markdown"
-                      ? "rounded bg-paper px-2 py-0.5 text-xs text-muted"
+                      ? "rounded bg-zinc-100 px-2 py-0.5 text-xs text-muted"
                       : "rounded bg-ink/5 px-2 py-0.5 text-xs text-muted"
                   }
                 >
@@ -38,7 +38,7 @@ export default async function AdminArticlesPage() {
                 <>
                   <Link
                     href={`/admin/articles/${a.slug}/edit`}
-                    className="rounded border border-rule px-3 py-1.5 text-sm hover:bg-paper"
+                    className="rounded border border-rule px-3 py-1.5 text-sm hover:bg-zinc-50"
                   >
                     编辑
                   </Link>

@@ -24,9 +24,9 @@ export default function AboutPage() {
         </p>
         <p>
           发稿方式：<strong className="text-ink">Git Markdown</strong>（仓库{" "}
-          <code className="rounded bg-paper px-1 text-ink">content/articles/*.md</code>
+          <code className="rounded bg-zinc-100 px-1 text-ink">content/articles/*.md</code>
           ）或登录 <Link href="/admin/login" className="font-semibold text-accent underline">内容管理</Link>{" "}
-          写入数据库（需配置环境变量 <code className="rounded bg-paper px-1">ARTICLE_ADMIN_PASSWORD</code>）。
+          写入数据库（需配置环境变量 <code className="rounded bg-zinc-100 px-1">ARTICLE_ADMIN_PASSWORD</code>）。
         </p>
         <p>商务与合作联系邮箱请后续在后台配置；当前为演示部署。</p>
       </div>
