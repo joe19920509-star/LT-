@@ -22,9 +22,6 @@ export function SiteFooter() {
           <Link href="/about" className="hover:underline">
             About
           </Link>
-          <Link href="/admin/login" className="hover:underline">
-            内容管理
-          </Link>
         </div>
       </div>
       <p className="mx-auto mt-8 max-w-6xl px-4 text-xs opacity-70 md:px-6">

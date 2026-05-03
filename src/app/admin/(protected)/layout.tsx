@@ -22,6 +22,9 @@ export default async function AdminProtectedLayout({
           <Link href="/admin/articles/new" className="hover:text-accent">
             新建（数据库）
           </Link>
+          <Link href="/admin/dashboard" className="hover:text-accent">
+            数据看板
+          </Link>
         </nav>
         <form action={adminLogoutAction}>
           <button type="submit" className="text-sm text-muted hover:text-ink">

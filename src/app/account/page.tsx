@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { getAllArticles } from "@/lib/articles";
 import { getCurrentUser, isSubscriptionActive } from "@/lib/auth";
 import { buildPersonalEdition } from "@/lib/edition";
+import { PersonalEditionBoard } from "@/components/PersonalEditionBoard";
 
 export const metadata: Metadata = {
   title: "账户与今日看版",
@@ -88,44 +89,19 @@ export default async function AccountPage() {
         </div>
       </section>
 
-      <section className="mt-12">
-        <div className="mb-4 flex flex-wrap items-end justify-between gap-4 border-b-2 border-ink pb-2">
-          <div>
-            <h2 className="font-display text-2xl font-bold">{edition.headline}</h2>
-            <p className="mt-1 max-w-3xl text-sm text-muted">{edition.subline}</p>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {edition.tags.map((t) => (
-              <span key={t} className="rounded-full bg-ink/5 px-2 py-0.5 text-xs text-muted">
-                {t}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {!active && (
-          <p className="mb-6 rounded border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
-            开通订阅后，下方列表顺序与深度分析将同步至全文阅读体验。{" "}
-            <Link href="/subscribe" className="font-semibold underline">
-              立即订阅
-            </Link>
-          </p>
-        )}
-
-        <ol className="grid list-decimal gap-6 pl-5 md:grid-cols-2">
-          {edition.ordered.map((a) => (
-            <li key={a.slug} className="marker:font-display marker:text-accent">
-              <article>
-                <p className="text-xs font-semibold uppercase text-muted">{a.category}</p>
-                <Link href={`/articles/${a.slug}`} className="group">
-                  <h3 className="mt-1 font-display text-xl font-bold leading-snug group-hover:underline">{a.title}</h3>
-                </Link>
-                <p className="mt-2 line-clamp-2 text-sm text-muted">{a.dek}</p>
-              </article>
-            </li>
-          ))}
-        </ol>
-      </section>
+      <PersonalEditionBoard
+        edition={edition}
+        notice={
+          !active ? (
+            <p className="mb-6 rounded border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+              开通订阅后，下方列表顺序与深度分析将同步至全文阅读体验。{" "}
+              <Link href="/subscribe" className="font-semibold underline">
+                立即订阅
+              </Link>
+            </p>
+          ) : undefined
+        }
+      />
     </div>
   );
 }
