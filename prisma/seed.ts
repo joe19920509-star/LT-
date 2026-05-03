@@ -71,6 +71,51 @@ Options markets priced a higher implied volatility term structure, suggesting po
 
 **Deep dive (subscribers):** Scenario tables for crack spreads under three macro paths.`,
   },
+  {
+    slug: "university-spinout-opens-series-b",
+    title: "University Spinout Opens Series B as Strategics Circle",
+    dek: "A lab-to-market story in specialty materials draws strategic interest from Asian industrials.",
+    category: "Lab to Market",
+    excerpt:
+      "The company, spun out of a coastal research institute, cites repeatable pilot lines and two Fortune 500 offtake letters.",
+    body: `The company, spun out of a coastal research institute, cites repeatable pilot lines and two Fortune 500 offtake letters.
+
+Management highlighted gross-margin expansion from in-sourcing catalyst precursors rather than licensing overseas tollers.
+
+**Lab to Market lens:** IP carve-outs, milestone-based grants, and the path from demonstration tonnes to nameplate capacity.
+
+**Subscribers:** Cap table sensitivity and comparables against three listed peers in advanced ceramics.`,
+  },
+  {
+    slug: "duration-bets-versus-carry-trades",
+    title: "Duration Bets Versus Carry Trades in the Same Portfolio",
+    dek: "When long-horizon themes meet tactical funding pressure.",
+    category: "LongTerm & ShortTerm",
+    excerpt:
+      "Asset owners describe layering macro hedges without abandoning multi-year themes in electrification and grid hardware.",
+    body: `Asset owners describe layering macro hedges without abandoning multi-year themes in electrification and grid hardware.
+
+Short-term rates volatility has widened the dispersion between cash Treasuries and spread product, complicating roll strategies.
+
+**LongTerm & ShortTerm:** We map where convexity pays for insurance and where carry still clears hurdle rates.
+
+**For subscribers:** Two model portfolios with explicit rebalance triggers.`,
+  },
+  {
+    slug: "liquidity-pockets-in-small-cap-reopenings",
+    title: "Liquidity Pockets in Small-Cap Reopenings",
+    dek: "Fast money meets slow clearing when secondaries cross primary calendars.",
+    category: "Fast & Slow",
+    excerpt:
+      "Dealers note episodic depth in names under $3bn market cap as systematic flows pause and discretionary desks reload.",
+    body: `Dealers note episodic depth in names under $3bn market cap as systematic flows pause and discretionary desks reload.
+
+Slower-moving pension rebalancing interacts with faster ETF creations, producing two-speed tape behavior into month-end.
+
+**Fast & Slow framing:** Which order types clear without impact and which still gap on headline risk.
+
+**Subscriber toolkit:** Our liquidity heat-score by sector, refreshed weekly.`,
+  },
 ];
 
 async function main() {

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getCurrentUser, isSubscriptionActive } from "@/lib/auth";
 import { logoutAction } from "@/app/actions/auth";
+import { SectionNav } from "@/components/SectionNav";
 
 export async function SiteHeader() {
   const user = await getCurrentUser();
@@ -13,12 +14,9 @@ export async function SiteHeader() {
           <Link href="/" className="font-display text-xl font-bold tracking-tight md:text-2xl">
             LT Magazine
           </Link>
-          <nav className="hidden items-center gap-4 text-sm text-muted md:flex">
-            <Link href="/" className="hover:text-ink">
-              首页
-            </Link>
+          <nav className="hidden items-center gap-4 text-sm text-muted lg:flex">
             <Link href="/#markets" className="hover:text-ink">
-              市场
+              市场速览
             </Link>
             <Link href="/#latest" className="hover:text-ink">
               最新
@@ -67,6 +65,7 @@ export async function SiteHeader() {
           )}
         </div>
       </div>
+      <SectionNav />
       <div className="border-t border-rule bg-ink text-paper">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-2 px-4 py-1.5 text-xs md:px-6">
           <span className="opacity-90">ltmagazine.cn · 订阅制财经阅读</span>

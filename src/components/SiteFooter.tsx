@@ -18,6 +18,9 @@ export function SiteFooter() {
           <Link href="/subscribe" className="hover:underline">
             订阅说明
           </Link>
+          <Link href="/about" className="hover:underline">
+            About
+          </Link>
         </div>
       </div>
       <p className="mx-auto mt-8 max-w-6xl px-4 text-xs opacity-70 md:px-6">
