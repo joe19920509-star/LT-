@@ -22,18 +22,7 @@ export function getMarkdownArticleInfoForOg(slug: string): OgArticleInfo | null 
   return null;
 }
 
-export async function getArticleInfoForOg(slug: string): Promise<OgArticleInfo | null> {
-  const fromMd = getMarkdownArticleInfoForOg(slug);
-  if (fromMd) return fromMd;
-  try {
-    const { prisma } = await import("@/lib/prisma");
-    const row = await prisma.article.findUnique({
-      where: { slug },
-      select: { title: true, category: true },
-    });
-    if (!row) return null;
-    return { title: row.title, category: row.category };
-  } catch {
-    return null;
-  }
+/** OG 不连库：避免 Neon/undici 在部分区域报 `fetch failed`，且与 pipe 错误混在日志里难查 */
+export function getArticleInfoForOgSync(slug: string): OgArticleInfo | null {
+  return getMarkdownArticleInfoForOg(slug);
 }

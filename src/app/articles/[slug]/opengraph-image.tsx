@@ -1,7 +1,7 @@
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
-import { getArticleInfoForOg } from "@/lib/article-og";
+import { getArticleInfoForOgSync } from "@/lib/article-og";
 
 export const alt = "LT Magazine";
 export const size = { width: 1200, height: 630 };
@@ -22,9 +22,21 @@ const NOTO_SC_700_LOCAL = join(
   "noto-sans-sc-chinese-simplified-700-normal.woff2",
 );
 
+/** 独立拷贝一份 ArrayBuffer，避免 Buffer 底层池视图传入 Resvg 后在 wasm 侧读坏（与 pipe 失败相关讨论见 next#67700） */
 function bufferToArrayBuffer(buf: Buffer): ArrayBuffer {
-  const sliced = buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength);
-  return sliced as ArrayBuffer;
+  const u8 = new Uint8Array(buf.byteLength);
+  u8.set(buf);
+  return u8.buffer;
+}
+
+/** Satori→SVG→Resvg 对裸 `&`、尖括号等较敏感，先规范化再进 JSX */
+function sanitizeOgText(s: string): string {
+  return s.replace(/&/g, "＆").replace(/</g, "‹").replace(/>/g, "›");
+}
+
+function slugToAsciiFallbackTitle(slug: string): string {
+  const t = slug.replace(/-/g, " ").trim();
+  return t || "LT Magazine";
 }
 
 async function loadChineseFont(): Promise<ArrayBuffer | null> {
@@ -155,13 +167,17 @@ function buildOgImageResponse(
 /** ImageResponse 在流被读取时才真正渲染，必须在路由里 await 才能把 Satori 错误收进 try/catch */
 async function imageResponseToPng(res: Response): Promise<Response> {
   const buf = await res.arrayBuffer();
-  return new Response(buf, { status: 200, headers: res.headers });
+  const headers = new Headers();
+  res.headers.forEach((value, key) => {
+    headers.set(key, value);
+  });
+  return new Response(buf, { status: 200, headers });
 }
 
 export default async function Image({ params }: Props) {
   const { slug } = await params;
 
-  const article = await getArticleInfoForOg(slug);
+  const article = getArticleInfoForOgSync(slug);
 
   const fontData = await loadChineseFont();
   const fonts = fontData
@@ -170,16 +186,29 @@ export default async function Image({ params }: Props) {
       ] as const)
     : undefined;
 
-  const title = article?.title ?? "LT Magazine";
-  const category = article?.category ?? "";
+  const titleRaw = article?.title ?? "LT Magazine";
+  const categoryRaw = article?.category ?? "";
+  const title = sanitizeOgText(titleRaw);
+  const category = sanitizeOgText(categoryRaw);
 
   try {
     return await imageResponseToPng(buildOgImageResponse(title, category, fonts));
-  } catch {
-    try {
-      return await imageResponseToPng(buildOgImageResponse("LT Magazine", "", undefined));
-    } catch {
-      return new Response(null, { status: 503 });
-    }
+  } catch (err) {
+    console.error("[opengraph-image] primary render failed", slug, err);
+  }
+
+  /** 无 CJK 字体时中文会拖垮 Resvg；用 slug 生成 ASCII 主标题兜底 */
+  try {
+    const asciiTitle = sanitizeOgText(slugToAsciiFallbackTitle(slug));
+    return await imageResponseToPng(buildOgImageResponse(asciiTitle, "", undefined));
+  } catch (err) {
+    console.error("[opengraph-image] ascii fallback failed", slug, err);
+  }
+
+  try {
+    return await imageResponseToPng(buildOgImageResponse("LT Magazine", "", undefined));
+  } catch (err) {
+    console.error("[opengraph-image] english fallback failed", err);
+    return new Response(null, { status: 503 });
   }
 }
