@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { getAllArticles } from "@/lib/articles";
+import { getMarketStrip } from "@/lib/market-quotes";
 
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
   const articles = (await getAllArticles()).slice(0, 8);
+  const strip = await getMarketStrip();
 
   const lead = articles[0];
   const rest = articles.slice(1);
@@ -15,16 +17,10 @@ export default async function HomePage() {
         id="markets"
         className="mb-10 grid gap-3 border border-rule bg-white p-4 text-sm md:grid-cols-4"
       >
-        {[
-          { l: "上证", v: "—", c: "订阅后看实时数据" },
-          { l: "恒生", v: "—", c: "接入行情 API 可替换" },
-          { l: "美元指数", v: "—", c: "演示占位" },
-          { l: "美债 10Y", v: "—", c: "演示占位" },
-        ].map((x) => (
-          <div key={x.l} className="border-rule md:border-r md:last:border-0 md:pr-4">
-            <p className="text-xs uppercase tracking-wide text-muted">{x.l}</p>
-            <p className="font-display text-2xl font-bold">{x.v}</p>
-            <p className="text-xs text-muted">{x.c}</p>
+        {strip.map((x) => (
+          <div key={x.label} className="border-rule md:border-r md:last:border-0 md:pr-4">
+            <p className="text-xs font-medium tracking-wide text-muted">{x.label}</p>
+            <p className="mt-1 font-display text-2xl font-bold tabular-nums">{x.value}</p>
           </div>
         ))}
       </section>
