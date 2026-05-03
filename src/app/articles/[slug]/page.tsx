@@ -6,7 +6,7 @@ import { getPublicSiteUrl } from "@/lib/site-url";
 import { getCurrentUser, isSubscriptionActive } from "@/lib/auth";
 import { splitParagraphs } from "@/components/ArticleRichText";
 import { MarkdownBody } from "@/components/MarkdownBody";
-import { ArticleSharePanel } from "@/components/ArticleSharePanel";
+import { ArticleShareBlock } from "@/components/ArticleShareBlock";
 import { ArticleJsonLd } from "@/components/ArticleJsonLd";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -93,7 +93,7 @@ export default async function ArticlePage({ params }: Props) {
         })}
       </p>
 
-      <ArticleSharePanel
+      <ArticleShareBlock
         url={articleUrl}
         title={article.title}
         description={article.excerpt}

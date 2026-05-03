@@ -72,7 +72,7 @@ export function ArticleSharePanel({ url, title, description, imageUrl, slug }: P
   }, [imageUrl, slug, flash]);
 
   return (
-    <div className="mt-6 flex flex-wrap items-center gap-2 border-b border-rule pb-6" aria-label="分享">
+    <div className="flex flex-wrap items-center gap-2" aria-label="分享操作">
       <span className="text-xs font-semibold uppercase tracking-widest text-muted">分享</span>
       <button
         type="button"
