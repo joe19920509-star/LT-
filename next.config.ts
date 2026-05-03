@@ -8,6 +8,12 @@ const articleServerTraceIncludes = [
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  /**
+   * Next 15 默认对「非爬虫」浏览器流式输出 metadata，`og:*` 会出现在 `</head>` 之后。
+   * 微信拉链接预览不执行 JS、且只扫初始 `<head>`，导致聊天/朋友圈一直只有裸链。
+   * 对所有 UA 阻塞 metadata，使 Open Graph 进入首包 `<head>`（略增 TTFB，换分享卡片可用）。
+   */
+  htmlLimitedBots: /.*/,
   outputFileTracingIncludes: {
     "/articles/[slug]": [...articleServerTraceIncludes],
     "/articles/[slug]/opengraph-image": [...articleServerTraceIncludes],
