@@ -45,19 +45,11 @@ async function loadChineseFont(): Promise<ArrayBuffer | null> {
 
 type Props = { params: Promise<{ slug: string }> };
 
-export default async function Image({ params }: Props) {
-  const { slug } = await params;
-  const article = await getArticleBySlug(slug);
-
-  const fontData = await loadChineseFont();
-  const fonts = fontData
-    ? ([
-        { name: "Noto Sans SC", data: fontData, weight: 700 as const, style: "normal" as const },
-      ] as const)
-    : undefined;
-
-  const title = article?.title ?? "LT Magazine";
-  const category = article?.category ?? "";
+function ogImageResponse(
+  title: string,
+  category: string,
+  fonts: readonly [{ name: string; data: ArrayBuffer; weight: 700; style: "normal" }] | undefined,
+) {
   const titleSize = title.length > 42 ? 52 : title.length > 28 ? 60 : 68;
   const fontFamily = fonts ? "Noto Sans SC" : "system-ui";
 
@@ -158,4 +150,32 @@ export default async function Image({ params }: Props) {
       fonts: fonts ? [...fonts] : undefined,
     },
   );
+}
+
+export default async function Image({ params }: Props) {
+  const { slug } = await params;
+
+  let article: Awaited<ReturnType<typeof getArticleBySlug>> = null;
+  try {
+    article = await getArticleBySlug(slug);
+  } catch {
+    article = null;
+  }
+
+  const fontData = await loadChineseFont();
+  const fonts = fontData
+    ? ([
+        { name: "Noto Sans SC", data: fontData, weight: 700 as const, style: "normal" as const },
+      ] as const)
+    : undefined;
+
+  const title = article?.title ?? "LT Magazine";
+  const category = article?.category ?? "";
+
+  try {
+    return ogImageResponse(title, category, fonts);
+  } catch {
+    /** 缺 CJK 字体时 Satori 可能对中文抛错，降级为纯英文占位，避免分享链 500 */
+    return ogImageResponse("LT Magazine", "", undefined);
+  }
 }
