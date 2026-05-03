@@ -69,7 +69,6 @@ export default async function ArticlePage({ params }: Props) {
   const base = getPublicSiteUrl();
   const articlePath = `/articles/${slug}`;
   const articleUrl = `${base}${articlePath}`;
-  const shareImageUrl = `${base}${articlePath}/opengraph-image`;
 
   return (
     <article className="mx-auto max-w-3xl px-4 py-10 md:px-6">
@@ -84,12 +83,7 @@ export default async function ArticlePage({ params }: Props) {
         })}
       </p>
 
-      <ArticleSharePanel
-        url={articleUrl}
-        title={article.title}
-        description={article.excerpt}
-        imageUrl={shareImageUrl}
-      />
+      <ArticleSharePanel url={articleUrl} title={article.title} description={article.excerpt} />
 
       {fullAccess ? (
         <div className="article-md mt-10">
