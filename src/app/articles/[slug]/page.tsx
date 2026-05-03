@@ -7,6 +7,7 @@ import { getCurrentUser, isSubscriptionActive } from "@/lib/auth";
 import { splitParagraphs } from "@/components/ArticleRichText";
 import { MarkdownBody } from "@/components/MarkdownBody";
 import { ArticleSharePanel } from "@/components/ArticleSharePanel";
+import { ArticleJsonLd } from "@/components/ArticleJsonLd";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -73,6 +74,14 @@ export default async function ArticlePage({ params }: Props) {
 
   return (
     <article className="mx-auto max-w-3xl px-4 py-10 md:px-6">
+      <ArticleJsonLd
+        headline={article.title}
+        description={article.excerpt}
+        imageUrl={shareImageUrl}
+        pageUrl={articleUrl}
+        datePublished={article.publishedAt.toISOString()}
+        siteOrigin={base}
+      />
       <p className="text-xs font-semibold uppercase tracking-widest text-accent">{article.category}</p>
       <h1 className="mt-2 font-display text-4xl font-black leading-tight md:text-5xl">{article.title}</h1>
       <p className="mt-4 font-display text-xl text-muted">{article.dek}</p>

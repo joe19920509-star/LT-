@@ -29,11 +29,11 @@ export function ArticleSharePanel({ url, title, description, imageUrl, slug }: P
   const copyForWeChat = useCallback(async () => {
     try {
       await navigator.clipboard.writeText(url);
-      flash("已复制");
+      flash(inWeChat ? "已复制。若对方只见网址，请其点开链接，或用「分享图」发封面。" : "已复制");
     } catch {
       flash("请长按选中地址栏链接复制");
     }
-  }, [url, flash]);
+  }, [url, flash, inWeChat]);
 
   const nativeShare = useCallback(async () => {
     if (!navigator.share) {
@@ -76,7 +76,7 @@ export function ArticleSharePanel({ url, title, description, imageUrl, slug }: P
       <span className="text-xs font-semibold uppercase tracking-widest text-muted">分享</span>
       <button
         type="button"
-        title="复制文章链接。在聊天里发送时，微信通常会显示标题和缩略图。"
+        title="复制链接。聊天里若只显示成一串网址，多为微信未展开；请对方点击打开，或使用本页「分享图」发图片。"
         onClick={copyForWeChat}
         className="rounded-full border border-rule bg-white px-3 py-1.5 text-xs font-semibold text-ink hover:bg-zinc-50"
       >
