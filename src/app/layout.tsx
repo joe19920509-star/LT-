@@ -47,6 +47,11 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true },
   },
+  verification: {
+    other: {
+      "baidu-site-verification": "codeva-HuPszVqRWy",
+    },
+  },
   openGraph: {
     type: "website",
     locale: "zh_CN",
