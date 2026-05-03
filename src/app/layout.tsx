@@ -19,6 +19,10 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ltmagazine.cn";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  icons: {
+    icon: "/icon",
+    shortcut: "/icon",
+  },
   title: {
     default: "LT Magazine | 财经订阅阅读",
     template: "%s | LT Magazine",
