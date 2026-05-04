@@ -8,17 +8,23 @@ export async function SiteHeader() {
   const subscribed = user ? isSubscriptionActive(user) : false;
 
   return (
-    <header className="border-b border-rule bg-white/90 backdrop-blur-sm">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 md:px-6">
+    <header className="border-b border-rule bg-white">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3.5 md:px-6">
         <div className="flex items-center gap-6">
-          <Link href="/" className="font-display text-xl font-bold tracking-tight md:text-2xl">
+          <Link
+            href="/"
+            className="font-display text-xl font-bold tracking-tight text-ink md:text-2xl md:tracking-tighter"
+          >
             LT Magazine
           </Link>
-          <nav className="hidden items-center gap-4 text-sm text-muted lg:flex">
-            <Link href="/#markets" className="hover:text-ink">
+          <nav className="hidden items-center gap-5 text-[13px] font-medium tracking-wide text-muted lg:flex">
+            <Link href="/#markets" className="hover:text-accent">
               市场速览
             </Link>
-            <Link href="/#latest" className="hover:text-ink">
+            <Link href="/#sections" className="hover:text-accent">
+              栏目
+            </Link>
+            <Link href="/#latest" className="hover:text-accent">
               最新
             </Link>
           </nav>
@@ -33,18 +39,18 @@ export async function SiteHeader() {
               ) : (
                 <Link
                   href="/subscribe"
-                  className="rounded border border-accent px-3 py-1.5 text-xs font-medium text-accent hover:bg-zinc-50"
+                  className="rounded border border-accent px-3 py-1.5 text-xs font-semibold text-accent hover:bg-accent/5"
                 >
                   开通订阅
                 </Link>
               )}
-              <Link href="/account" className="text-muted hover:text-ink">
+              <Link href="/account" className="text-muted hover:text-accent">
                 账户
               </Link>
               <form action={logoutAction}>
                 <button
                   type="submit"
-                  className="text-muted hover:text-ink"
+                  className="text-muted hover:text-accent"
                 >
                   退出
                 </button>
@@ -52,7 +58,7 @@ export async function SiteHeader() {
             </>
           ) : (
             <>
-              <Link href="/login" className="text-muted hover:text-ink">
+              <Link href="/login" className="text-muted hover:text-accent">
                 登录
               </Link>
               <Link
@@ -66,10 +72,10 @@ export async function SiteHeader() {
         </div>
       </div>
       <SectionNav />
-      <div className="border-t border-rule bg-ink text-paper">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-2 px-4 py-1.5 text-xs md:px-6">
-          <span className="opacity-90">ltmagazine.cn · 订阅制财经阅读</span>
-          <span className="opacity-75">
+      <div className="border-t border-rule bg-strip text-paper">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-2 px-4 py-1.5 text-[11px] font-medium tracking-wide md:px-6">
+          <span className="text-white/85">ltmagazine.cn · 订阅制财经阅读</span>
+          <span className="text-white/65">
             {new Date().toLocaleDateString("zh-CN", {
               weekday: "long",
               year: "numeric",

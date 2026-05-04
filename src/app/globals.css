@@ -3,11 +3,13 @@
 @theme {
   --font-display: var(--font-display), ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
   --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
-  --color-paper: #ffffff;
-  --color-ink: #111111;
-  --color-muted: #5c5c5c;
-  --color-accent: #b8860b;
-  --color-rule: #d4d0c8;
+  /* WSJ-ish: warm paper, near-black ink, link blue */
+  --color-paper: #f5f4f1;
+  --color-ink: #0d0d0d;
+  --color-muted: #5a5752;
+  --color-accent: #0274b8;
+  --color-rule: #cfcac2;
+  --color-strip: #1a1a1a;
 }
 
 html {
