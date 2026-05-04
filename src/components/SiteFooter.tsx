@@ -5,7 +5,7 @@ export function SiteFooter() {
     <footer className="mt-16 border-t border-rule bg-paper py-10 text-sm text-muted">
       <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 md:flex-row md:items-start md:justify-between md:px-6">
         <div>
-          <p className="font-display text-xl font-bold text-ink md:text-2xl">LT Magazine</p>
+          <p className="font-display text-xl font-bold text-ink md:text-2xl">LT</p>
           <p className="mt-2 font-display text-sm font-medium tracking-wide text-ink/80 md:text-base">
             Follow Science, Find Money
           </p>

@@ -3,7 +3,7 @@ import { RegisterForm } from "./RegisterForm";
 
 export const metadata: Metadata = {
   title: "注册",
-  description: "创建 LT Magazine 账户，填写手机号、邮箱、年龄、性别、地区与职业。",
+  description: "创建 LT 账户，填写手机号、邮箱、年龄、性别、地区与职业。",
 };
 
 export default function RegisterPage() {

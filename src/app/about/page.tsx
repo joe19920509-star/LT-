@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "LT Magazine：把从实验室到市场的路，讲成一个好故事。Follow Science, Find Money.",
+    "LT：把从实验室到市场的路，讲成一个好故事。Follow Science, Find Money.",
 };
 
 export default function AboutPage() {
@@ -13,7 +13,7 @@ export default function AboutPage() {
       <h1 className="font-display text-3xl font-black leading-tight text-ink md:text-4xl">
         我们为什么需要一本讲「从实验室到市场」的杂志
       </h1>
-      <p className="mt-2 text-sm text-muted">LT Magazine · ltmagazine.cn</p>
+      <p className="mt-2 text-sm text-muted">LT · ltmagazine.cn</p>
 
       <div className="article-body mt-10 space-y-6 text-muted">
         <p>三年前我从媒体去做投资。不是转行，是去看看钱到底怎么想的。</p>
@@ -26,7 +26,7 @@ export default function AboutPage() {
         </p>
         <p>所以我回来做媒体。</p>
         <p>
-          <strong className="text-ink">LT Magazine</strong> 不做科普，不做财经。我们只做一件事：把从实验室到市场的路，讲成一个好故事。
+          <strong className="text-ink">LT</strong> 不做科普，不做财经。我们只做一件事：把从实验室到市场的路，讲成一个好故事。
         </p>
         <p>
           <strong className="text-ink">Fast & Slow</strong>、<strong className="text-ink">Long Term & Short Term</strong>、
