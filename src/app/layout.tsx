@@ -27,13 +27,13 @@ export const metadata: Metadata = {
     shortcut: "/icon",
   },
   title: {
-    default: "LT Magazine | 财经订阅阅读",
-    template: "%s | LT Magazine",
+    default: "LT | 财经订阅阅读",
+    template: "%s | LT",
   },
   description:
     "ltmagazine.cn — 订阅制财经内容：市场、信用、亚太与大宗商品。注册订阅后解锁全文与个性化今日看版。",
   keywords: [
-    "LT Magazine",
+    "LT",
     "财经杂志",
     "订阅阅读",
     "ltmagazine",
@@ -55,12 +55,12 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "zh_CN",
-    siteName: "LT Magazine",
+    siteName: "LT",
     url: siteUrl,
   },
   twitter: {
     card: "summary_large_image",
-    title: "LT Magazine | 财经订阅阅读",
+    title: "LT | 财经订阅阅读",
     description:
       "订阅制财经内容：市场、信用、亚太与大宗商品。注册订阅后解锁全文。",
   },

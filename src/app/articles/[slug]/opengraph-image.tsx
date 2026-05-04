@@ -3,7 +3,7 @@ import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import { getArticleInfoForOgSync } from "@/lib/article-og";
 
-export const alt = "LT Magazine";
+export const alt = "LT";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -36,7 +36,7 @@ function sanitizeOgText(s: string): string {
 
 function slugToAsciiFallbackTitle(slug: string): string {
   const t = slug.replace(/-/g, " ").trim();
-  return t || "LT Magazine";
+  return t || "LT";
 }
 
 async function loadChineseFont(): Promise<ArrayBuffer | null> {
@@ -186,7 +186,7 @@ export default async function Image({ params }: Props) {
       ] as const)
     : undefined;
 
-  const titleRaw = article?.title ?? "LT Magazine";
+  const titleRaw = article?.title ?? "LT";
   const categoryRaw = article?.category ?? "";
   const title = sanitizeOgText(titleRaw);
   const category = sanitizeOgText(categoryRaw);
@@ -206,7 +206,7 @@ export default async function Image({ params }: Props) {
   }
 
   try {
-    return await imageResponseToPng(buildOgImageResponse("LT Magazine", "", undefined));
+    return await imageResponseToPng(buildOgImageResponse("LT", "", undefined));
   } catch (err) {
     console.error("[opengraph-image] english fallback failed", err);
     return new Response(null, { status: 503 });

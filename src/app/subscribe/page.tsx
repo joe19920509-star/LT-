@@ -6,7 +6,7 @@ import { SubscribeButton } from "./SubscribeButton";
 
 export const metadata: Metadata = {
   title: "订阅",
-  description: "开通 LT Magazine 订阅，解锁全文与个性化今日看版。",
+  description: "开通 LT 订阅，解锁全文与个性化今日看版。",
 };
 
 export default async function SubscribePage() {
@@ -17,7 +17,7 @@ export default async function SubscribePage() {
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-12 md:px-6">
-      <h1 className="font-display text-3xl font-bold">订阅 LT Magazine</h1>
+      <h1 className="font-display text-3xl font-bold">订阅 LT</h1>
       <p className="mt-3 text-muted">
         订阅后可阅读全部付费文章，并在账户页查看根据您的地区、职业等信息生成的「今日看版」。
       </p>

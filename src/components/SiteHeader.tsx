@@ -15,7 +15,7 @@ export async function SiteHeader() {
             href="/"
             className="font-display text-xl font-bold tracking-tight text-ink md:text-2xl md:tracking-tighter"
           >
-            LT Magazine
+            LT
           </Link>
           <nav className="hidden items-center gap-5 text-[13px] font-medium tracking-wide text-muted lg:flex">
             <Link href="/#markets" className="hover:text-accent">

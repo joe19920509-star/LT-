@@ -10,6 +10,8 @@ export const metadata: Metadata = {
   title: "账户与今日看版",
 };
 
+export const dynamic = "force-dynamic";
+
 const genderLabel: Record<string, string> = {
   male: "男",
   female: "女",
@@ -24,7 +26,7 @@ export default async function AccountPage() {
   const active = isSubscriptionActive(user);
   const articles = (await getAllArticles()).slice(0, 12);
 
-  const edition = buildPersonalEdition(
+  const edition = await buildPersonalEdition(
     {
       region: user.region,
       occupation: user.occupation,

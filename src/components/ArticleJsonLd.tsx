@@ -17,10 +17,10 @@ export function ArticleJsonLd(props: {
     mainEntityOfPage: { "@type": "WebPage", "@id": pageUrl },
     url: pageUrl,
     datePublished,
-    author: { "@type": "Organization", name: "LT Magazine" },
+    author: { "@type": "Organization", name: "LT" },
     publisher: {
       "@type": "Organization",
-      name: "LT Magazine",
+      name: "LT",
       logo: { "@type": "ImageObject", url: `${siteOrigin}/icon` },
     },
   };

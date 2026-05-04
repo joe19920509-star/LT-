@@ -8,16 +8,16 @@ export function SiteJsonLd() {
     "@graph": [
       {
         "@type": "Organization",
-        name: "LT Magazine",
+        name: "LT",
         url: siteUrl,
         logo: `${siteUrl}/icon`,
       },
       {
         "@type": "WebSite",
-        name: "LT Magazine",
+        name: "LT",
         url: siteUrl,
         inLanguage: "zh-CN",
-        publisher: { "@type": "Organization", name: "LT Magazine" },
+        publisher: { "@type": "Organization", name: "LT" },
       },
     ],
   };
