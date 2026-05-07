@@ -8,10 +8,9 @@ export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
   const articles = await getAllArticles();
-  const topArticles = articles.slice(0, 8);
   const strip = await getMarketStrip();
 
-  const { lead, rest } = pickHomeLeadAndRest(topArticles);
+  const { lead, rest } = pickHomeLeadAndRest(articles);
 
   const sectionCards = SECTIONS.map((s) => {
     const inSection = articles.filter((a) => a.category === s.label);
