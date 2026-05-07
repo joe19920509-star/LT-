@@ -30,13 +30,15 @@ model User {
 }
 
 model Article {
-  id          String   @id @default(cuid())
-  slug        String   @unique
-  title       String
-  dek         String
-  category    String
-  excerpt     String
-  body        String
-  publishedAt DateTime @default(now())
-  heroImage   String?
+  id                     String   @id @default(cuid())
+  slug                   String   @unique
+  title                  String
+  dek                    String
+  category               String
+  excerpt                String
+  body                   String
+  publishedAt            DateTime @default(now())
+  heroImage              String?
+  /** true：未订阅仅可看前文预览；false：访客可读全文 */
+  requiresSubscription   Boolean  @default(false)
 }

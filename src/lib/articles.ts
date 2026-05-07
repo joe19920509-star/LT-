@@ -16,6 +16,8 @@ export type ListedArticle = {
   excerpt: string;
   body: string;
   publishedAt: Date;
+  /** true：需有效订阅才读全文；false：公开可读（默认） */
+  requiresSubscription: boolean;
   source: "markdown" | "database";
 };
 
@@ -26,6 +28,14 @@ function parseDate(raw: unknown): Date {
     if (!Number.isNaN(d.getTime())) return d;
   }
   return new Date();
+}
+
+/** Markdown front matter：`requiresSubscription: true` 为订阅专享；缺省为公开全文 */
+function parseRequiresSubscription(raw: unknown): boolean {
+  if (raw === true) return true;
+  if (typeof raw === "string" && raw.toLowerCase() === "true") return true;
+  if (raw === 1) return true;
+  return false;
 }
 
 export function loadMarkdownArticlesSync(): ListedArticle[] {
@@ -46,6 +56,7 @@ export function loadMarkdownArticlesSync(): ListedArticle[] {
       excerpt: String(data.excerpt ?? ""),
       body: content.trim(),
       publishedAt: parseDate(data.publishedAt),
+      requiresSubscription: parseRequiresSubscription(data.requiresSubscription),
       source: "markdown",
     });
   }
@@ -62,6 +73,7 @@ function dbRowToListed(a: DbArticle): ListedArticle {
     excerpt: a.excerpt,
     body: a.body,
     publishedAt: a.publishedAt,
+    requiresSubscription: a.requiresSubscription,
     source: "database",
   };
 }

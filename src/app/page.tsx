@@ -8,10 +8,9 @@ export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
   const articles = await getAllArticles();
-  const topArticles = articles.slice(0, 8);
   const strip = await getMarketStrip();
 
-  const { lead, rest } = pickHomeLeadAndRest(topArticles);
+  const { lead, rest } = pickHomeLeadAndRest(articles);
 
   const sectionCards = SECTIONS.map((s) => {
     const inSection = articles.filter((a) => a.category === s.label);
@@ -84,8 +83,13 @@ export default async function HomePage() {
       {lead && (
         <section className="mb-12 border-b border-rule pb-12">
           <div className="border-l-[3px] border-accent pl-5 md:pl-6">
-            <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-accent">
-              {lead.category}
+            <p className="mb-2 flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-accent">
+              <span>{lead.category}</span>
+              {lead.requiresSubscription && (
+                <span className="rounded border border-accent/50 px-1.5 py-0.5 normal-case tracking-normal text-accent">
+                  订阅可读全文
+                </span>
+              )}
             </p>
             <Link href={`/articles/${lead.slug}`}>
               <h1 className="font-display text-3xl font-bold leading-[1.12] tracking-tight text-ink hover:underline md:text-5xl md:leading-[1.08]">
@@ -109,7 +113,7 @@ export default async function HomePage() {
       <section id="latest" className="scroll-mt-28">
         <div className="mb-5 flex items-end justify-between border-b border-rule pb-2">
           <h2 className="font-display text-lg font-bold tracking-tight text-ink md:text-xl">最新报道</h2>
-          <span className="text-[11px] text-muted">订阅会员可读全文</span>
+          <span className="text-[11px] text-muted">公开报道可直接阅读；标有「订阅可读全文」的需会员</span>
         </div>
         <div className="grid gap-4 md:grid-cols-2">
           {rest.map((a) => (
@@ -117,7 +121,14 @@ export default async function HomePage() {
               key={a.slug}
               className="flex flex-col border border-rule bg-white p-5 shadow-[0_1px_0_rgba(0,0,0,0.04)] transition hover:shadow-md"
             >
-              <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-accent">{a.category}</p>
+              <p className="flex flex-wrap items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-accent">
+                <span>{a.category}</span>
+                {a.requiresSubscription && (
+                  <span className="rounded border border-accent/50 px-1.5 py-0.5 normal-case tracking-normal">
+                    订阅可读全文
+                  </span>
+                )}
+              </p>
               <Link href={`/articles/${a.slug}`}>
                 <h3 className="mt-2 font-display text-xl font-bold leading-snug tracking-tight text-ink hover:underline md:text-2xl">
                   {a.title}

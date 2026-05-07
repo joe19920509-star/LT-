@@ -20,6 +20,7 @@ type Props = {
     excerpt: string;
     body: string;
     publishedAt: string;
+    requiresSubscription?: boolean;
   };
 };
 
@@ -103,6 +104,20 @@ export function AdminArticleForm({ mode, defaultValues }: Props) {
           defaultValue={defaultValues?.body}
           className="mt-1 w-full rounded border border-rule bg-white px-3 py-2 font-mono text-sm"
         />
+      </label>
+      <label className="flex cursor-pointer items-start gap-3 text-sm font-medium">
+        <input
+          type="checkbox"
+          name="requiresSubscription"
+          defaultChecked={defaultValues?.requiresSubscription}
+          className="mt-1 h-4 w-4 rounded border-rule"
+        />
+        <span>
+          需订阅后阅读全文
+          <span className="mt-1 block text-xs font-normal text-muted">
+            不勾选则所有访客可直接阅读全文（与 Markdown 稿默认一致）
+          </span>
+        </span>
       </label>
       <button
         type="submit"

@@ -77,6 +77,7 @@ export async function adminCreateArticleAction(
   const exists = await prisma.article.findUnique({ where: { slug: d.slug } });
   if (exists) return { error: "slug 已存在" };
   const publishedAt = d.publishedAt ? new Date(d.publishedAt) : new Date();
+  const requiresSubscription = formData.get("requiresSubscription") === "on";
   await prisma.article.create({
     data: {
       slug: d.slug,
@@ -86,6 +87,7 @@ export async function adminCreateArticleAction(
       excerpt: d.excerpt,
       body: d.body,
       publishedAt,
+      requiresSubscription,
     },
   });
   revalidateArticlePaths(d.slug);
@@ -121,6 +123,7 @@ export async function adminUpdateArticleAction(
     if (clash) return { error: "slug 已被其他数据库文章占用" };
   }
   const publishedAt = d.publishedAt ? new Date(d.publishedAt) : row.publishedAt;
+  const requiresSubscription = formData.get("requiresSubscription") === "on";
   await prisma.article.update({
     where: { slug: originalSlug },
     data: {
@@ -131,6 +134,7 @@ export async function adminUpdateArticleAction(
       excerpt: d.excerpt,
       body: d.body,
       publishedAt,
+      requiresSubscription,
     },
   });
   revalidateArticlePaths(d.slug);

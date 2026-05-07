@@ -59,7 +59,8 @@ export default async function ArticlePage({ params }: Props) {
   if (!article) notFound();
 
   const user = await getCurrentUser();
-  const fullAccess = user ? isSubscriptionActive(user) : false;
+  const subscriptionOk = user ? isSubscriptionActive(user) : false;
+  const fullAccess = !article.requiresSubscription || subscriptionOk;
   const paras = splitParagraphs(article.body);
   const previewCount = Math.min(2, paras.length);
   const preview = paras.slice(0, previewCount);
@@ -85,13 +86,20 @@ export default async function ArticlePage({ params }: Props) {
       <p className="text-xs font-semibold uppercase tracking-widest text-accent">{article.category}</p>
       <h1 className="mt-2 font-display text-4xl font-black leading-tight md:text-5xl">{article.title}</h1>
       <p className="mt-4 font-display text-xl text-muted">{article.dek}</p>
-      <p className="mt-6 text-sm text-muted">
-        {article.publishedAt.toLocaleDateString("zh-CN", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        })}
-      </p>
+      <div className="mt-6 flex flex-wrap items-center gap-2 text-sm text-muted">
+        <span>
+          {article.publishedAt.toLocaleDateString("zh-CN", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })}
+        </span>
+        {article.requiresSubscription && (
+          <span className="rounded border border-accent/40 bg-accent/5 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-accent">
+            订阅可读全文
+          </span>
+        )}
+      </div>
 
       <ArticleShareBlock
         url={articleUrl}
@@ -120,7 +128,7 @@ export default async function ArticlePage({ params }: Props) {
               </div>
               <div className="absolute inset-0 flex flex-col items-center justify-end bg-gradient-to-t from-white via-white/95 to-transparent pb-6 pt-24">
                 <p className="max-w-md text-center text-sm font-medium text-ink">
-                  本文为订阅内容。注册并开通订阅后阅读全文。
+                  本文为订阅专享。注册并开通订阅后阅读全文。
                 </p>
                 <div className="mt-4 flex flex-wrap justify-center gap-3">
                   <Link

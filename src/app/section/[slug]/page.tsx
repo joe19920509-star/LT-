@@ -39,7 +39,14 @@ export default async function SectionPage({ params }: Props) {
             {articles.map((a) => (
               <li key={a.slug}>
                 <article>
-                  <p className="text-xs font-semibold uppercase tracking-wide text-accent">{a.category}</p>
+                  <p className="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-wide text-accent">
+                    <span>{a.category}</span>
+                    {a.requiresSubscription && (
+                      <span className="rounded border border-accent/50 px-1.5 py-0.5 text-[10px] font-semibold normal-case tracking-normal">
+                        订阅可读全文
+                      </span>
+                    )}
+                  </p>
                   <Link href={`/articles/${a.slug}`}>
                     <h2 className="mt-2 font-display text-2xl font-bold leading-snug hover:underline">{a.title}</h2>
                   </Link>

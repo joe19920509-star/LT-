@@ -10,7 +10,9 @@ export default async function AdminArticlesPage() {
       <h1 className="font-display text-2xl font-bold">全部内容</h1>
       <p className="mt-2 text-sm text-muted">
         <strong>Markdown</strong> 与仓库中 <code className="rounded bg-white px-1">content/articles</code>{" "}
-        同步；<strong>数据库</strong> 稿可在本后台增删改。同一 slug 以 Markdown 为准。
+        同步；<strong>数据库</strong> 稿可在本后台增删改。同一 slug 以 Markdown 为准。公开全文：front matter 不写{" "}
+        <code className="rounded bg-white px-1">requiresSubscription</code> 或写 <code className="rounded bg-white px-1">false</code>
+        ；订阅专享：写 <code className="rounded bg-white px-1">requiresSubscription: true</code>。
       </p>
       <ul className="mt-8 divide-y divide-rule border border-rule bg-white">
         {articles.map((a) => (
@@ -27,6 +29,11 @@ export default async function AdminArticlesPage() {
                   {a.source === "markdown" ? "Markdown" : "数据库"}
                 </span>
                 <span className="text-xs text-accent">{a.category}</span>
+                {a.requiresSubscription ? (
+                  <span className="rounded border border-accent/40 px-2 py-0.5 text-xs text-accent">订阅专享</span>
+                ) : (
+                  <span className="rounded bg-emerald-50 px-2 py-0.5 text-xs text-emerald-800">公开</span>
+                )}
               </div>
               <Link href={`/articles/${a.slug}`} className="mt-1 block font-medium hover:underline" target="_blank">
                 {a.title}

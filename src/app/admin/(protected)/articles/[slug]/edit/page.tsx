@@ -45,6 +45,7 @@ export default async function AdminEditArticlePage({ params }: Props) {
             excerpt: row.excerpt,
             body: row.body,
             publishedAt: toDatetimeLocalValue(row.publishedAt),
+            requiresSubscription: row.requiresSubscription,
           }}
         />
       </div>
